@@ -18,7 +18,6 @@ This is the starting point of the application.
 
 This application builds from backend to front end using Javascript, nodeJs, ExpressJs. The NPM packages included:
 
-- mySQL, 
 - Body-parser, 
 - Path, 
 - Express
