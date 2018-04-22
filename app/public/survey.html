@@ -6,21 +6,18 @@
   <title>FriendFinder</title>
 
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
   <!-- Font Awesome Glyphicons -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-
-  <!-- Chosen -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.5.1/chosen.jquery.min.js"></script>
+  
 
 </head>
 
-<body background="backgroundimageballoons.jpg">
+<body>
 
+<!-- Survey-->
   <div class="container">
 
     <h2 style="color: orange">Survey Questions</h2>
@@ -192,39 +189,35 @@
     </footer>
 
     <!-- Modal Dialog Displaying Closest Friend Match -->
-
 <!-- modal -->
-    <div class="bestFriendmodal" class="modal fade" role="dialog">
-      <div class="modal-dialog">
-        <!-- Modal content-->
-        <div class="modal-content">
-          <div class="modal-header">
-            <h4 class="modal-title">The Best Possible Match</h4>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <h5 id='bestFriend'></h5>
-            <img id='bestFriendPhoto' class="materialboxed" src="">
-          </div>
-          <div class="modal-footer">
-
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          </div>
+<!-- Modal -->
+<div id="bestFriendModal" class="modal" role="dialog">
+    <div class="modal-dialog">
+  
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Your new best friend</h4>
+        </div>
+        <div class="modal-body">
+          <h2 id="bestFriend"></h2>
+          <img id="bestFriendPhoto" src="" alt="">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
       </div>
+  
     </div>
+  </div>
+
 </body>
 
 </html>
 
 <script type="text/javascript">
-$(document).ready(function() {
-
-
-
-  $("#submit").on("click", function (event) {
+  $("#submit").on("click", function () {
     event.preventDefault();
 
     //check name and photo fields are completed filled out
@@ -264,13 +257,14 @@ $(document).ready(function() {
       $.post(currentURL + "/api/friends", newUser, function (data) {
         $("#bestFriend").text(data.name);
         $("#bestFriendPhoto").attr("src", data.photo);
-        $("#bestFriendModal").modal("toggle");
-      });
+        // show the modal with your new friend
+        $("#bestFriendModal").modal("toggle")
+      })
     } else {
       // If a required field is missing, show alert
       alert("Please answer all questions.");
     }
-  })
+  
   });
 
 </script>
