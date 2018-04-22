@@ -10,8 +10,8 @@ module.exports = function (app) {
     })
     console.log(friends);
 
-//body-parsing middleware to populate req.body.
-//grab scores for comparision
+    //body-parsing middleware to populate req.body.
+    //grab scores for comparision
     app.post("/api/friends", function (req, res) {
         console.log(req.body.scores);
 
@@ -22,7 +22,7 @@ module.exports = function (app) {
             user.scores[i] = parseInt(user.scores[i]); // parseINT as Interger not string
         }
         //friend match is the friend with the minimun difference in scores
-// let first match to the first friend
+        // let first match to the first friend
         var bestFriendIndex = 0;
         var lowestDifference = 1000;
 
@@ -38,10 +38,10 @@ module.exports = function (app) {
 
                 totalDifference += difference;
             }
-// where there is a new lowest difference in score, set the best friend index to this i and the new low to the totaldifference
-// test = Barney 10 BBird 20 Kermit 30 Heidi 40 Colbert 50
-// if user = 37 = best match is Colbert - ok
-// if user = 14 = best match is BBbird
+            // where there is a new lowest difference in score, set the best friend index to this i and the new low to the totaldifference
+            // test = Barney 10 BBird 20 Kermit 30 Heidi 40 Colbert 50
+            // if user = 37 = best match is Colbert - ok
+            // if user = 14 = best match is BBbird
 
             if (totalDifference < lowestDifference) {
                 bestFriendIndex = i;
@@ -53,7 +53,7 @@ module.exports = function (app) {
         //Send the matched friend back to to the client
         res.json(friends[bestFriendIndex]);
     });
-    app.post('/api/clear', function(req, res){
+    app.post('/api/clear', function (req, res) {
         // Empty out the arrays of data
         newUser = [];
         console.log(newUser);
